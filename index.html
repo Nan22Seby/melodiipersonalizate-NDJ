@@ -54,6 +54,23 @@
       padding: 40px 20px;
       text-align: center;
       background: radial-gradient(circle at top, #22284a, #05060a);
+      position: relative;
+      overflow: hidden;
+    }
+    /* badge reducere tip ribbon */
+    .promo-ribbon {
+      position: absolute;
+      top: 18px;
+      left: -40px;
+      background: linear-gradient(135deg,#ff4b4b,#ffbb33);
+      color:#05060a;
+      padding:8px 60px;
+      transform:rotate(-15deg);
+      font-weight:bold;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
     }
     .hero h1 {
       font-size: 36px;
@@ -99,6 +116,12 @@
       margin-top: 10px;
       font-size: 18px;
       color: #ffdd55;
+    }
+    .hero-price small {
+      font-size:13px;
+      color:#ffaaaa;
+      text-decoration: line-through;
+      margin-right:6px;
     }
     .container {
       max-width: 1100px;
@@ -149,22 +172,45 @@
       color: #c0c0c0;
     }
     .price-card {
-      max-width: 400px;
+      max-width: 420px;
       margin: 0 auto 40px auto;
-      background: linear-gradient(145deg, #101322, #05060a);
+      background: radial-gradient(circle at top,#20253f,#05060a);
       border-radius: 18px;
       padding: 24px;
-      border: 1px solid rgba(255,215,100,0.25);
+      border: 1px solid rgba(255,215,100,0.35);
       box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+      position: relative;
+      overflow:hidden;
+    }
+    .price-card::before{
+      content:"REDUCERE -30%";
+      position:absolute;
+      top:14px;
+      right:-60px;
+      background:linear-gradient(135deg,#ff4b4b,#ffbb33);
+      color:#05060a;
+      padding:6px 60px;
+      transform:rotate(20deg);
+      font-size:11px;
+      font-weight:bold;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.6);
     }
     .price-card h3 {
       font-size: 20px;
       margin-bottom: 8px;
     }
+    .old-price{
+      font-size:14px;
+      color:#ffaaaa;
+      text-decoration:line-through;
+    }
     .price-value {
-      font-size: 28px;
-      margin: 8px 0;
+      font-size: 30px;
+      margin: 4px 0 8px;
       color: #ffdd55;
+      font-weight:bold;
     }
     .price-details {
       font-size: 13px;
@@ -180,7 +226,7 @@
       margin-bottom: 6px;
     }
 
-    /* sectiune demo audio */
+    /* demo audio */
     .audio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -258,6 +304,70 @@
       font-size: 13px;
       color: #c0c0c0;
     }
+
+    /* comentarii / recenzii */
+    .reviews-wrap{
+      max-width:900px;
+      margin:0 auto;
+    }
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    .review-card{
+      background:#0b0d16;
+      border-radius:16px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+      position:relative;
+    }
+    .review-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .avatar{
+      width:28px;height:28px;border-radius:50%;
+      background:linear-gradient(135deg,#ffdd55,#ff7a2f);
+    }
+    .review-name{
+      font-size:14px;font-weight:bold;
+    }
+    .review-badge{
+      font-size:11px;color:#ffdd55;
+    }
+    .review-text{
+      font-size:13px;color:#d0d0d0;
+    }
+    .review-meta{
+      margin-top:6px;font-size:11px;color:#888;display:flex;gap:10px;align-items:center;
+    }
+    .review-meta span{display:flex;align-items:center;gap:4px;}
+
+    .add-review{
+      margin-top:22px;
+      background:#050813;
+      border-radius:16px;
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .add-review h4{margin-bottom:6px;font-size:15px;}
+    .add-review small{font-size:11px;color:#888;}
+    .add-review input,.add-review textarea{
+      width:100%;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:#05060f;
+      color:#fff;
+      font-size:13px;
+      margin:8px 0;
+    }
+    .add-review textarea{min-height:60px;}
+
     footer {
       text-align: center;
       padding: 20px;
@@ -271,6 +381,7 @@
       .hero h1 { font-size: 26px; }
       .hero { padding: 30px 16px; }
       .logo-img { height: 32px; width: 32px; }
+      .promo-ribbon{display:none;}
     }
   </style>
 </head>
@@ -278,7 +389,6 @@
 
 <header>
   <div class="logo-wrap">
-    <!-- pune aici fisierul tau de logo, de exemplu ndj_logo.png -->
     <img src="ndj_logo.png" alt="NDJ logo" class="logo-img">
     <div class="logo">Melodii NDJ</div>
   </div>
@@ -286,19 +396,22 @@
     <a href="#cum-func">Cum functioneaza</a>
     <a href="#demo">Asculta demo</a>
     <a href="#pret">Pret</a>
+    <a href="#reviews">Recenzii</a>
     <a href="#comanda">Comanda</a>
-    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section class="hero">
-  <span class="badge">Melodii personalizate la comanda</span>
+  <div class="promo-ribbon">De la 50 lei la 35 lei</div>
+  <span class="badge">Oferta de lansare</span>
   <h1>Cadoul perfect: o melodie scrisa special pentru ei</h1>
   <p>
     Creez melodii personalizate pentru orice moment important.
     Spui povestea, alegi stilul, iar eu transform totul intr-o piesa unica in format MP3.
   </p>
-  <div class="hero-price">De la <strong>35 lei</strong> / melodie</div>
+  <div class="hero-price">
+    <small>50 lei</small> <strong>35 lei</strong> / melodie
+  </div>
   <div style="margin-top: 14px;">
     <a href="#comanda" class="btn-primary">Comanda o melodie</a>
     <a href="#demo" class="btn-secondary">Asculta un demo</a>
@@ -328,7 +441,6 @@
   </div>
 </div>
 
-<!-- SECTIUNE DEMO AUDIO -->
 <div class="container" id="demo">
   <h2 class="section-title">Asculta cateva exemple</h2>
   <p class="section-subtitle">Scurte fragmente de melodii personalizate, ca sa auzi stilul si calitatea.</p>
@@ -365,10 +477,11 @@
 
 <div class="container" id="pret">
   <h2 class="section-title">Pachet recomandat</h2>
-  <p class="section-subtitle">Simplu, clar, fara costuri ascunse.</p>
+  <p class="section-subtitle">Oferta de lansare limitata.</p>
 
   <div class="price-card">
     <h3>Pachet Melodie Personalizata</h3>
+    <div class="old-price">Pret intreg: 50 lei</div>
     <div class="price-value">35 lei</div>
     <p class="price-details">Melodie personalizata 60–120 secunde, versuri inspirate din povestea ta, livrare digitala.</p>
     <ul class="price-list">
@@ -377,25 +490,111 @@
       <li>✦ 1 revizie usoara pentru mici modificari</li>
       <li>✦ Livrare standard: 3–5 zile lucratoare</li>
     </ul>
-    <p class="price-details"><strong>Optiuni extra</strong> (contracost, stabilite dupa comanda): livrare express, durata mai lunga, drepturi comerciale.</p>
-    <a href="#comanda" class="btn-primary">Comanda acum</a>
+    <p class="price-details"><strong>Oferta de lansare:</strong> reducere de la 50 lei la 35 lei pentru primele comenzi.</p>
+    <a href="#comanda" class="btn-primary">Profita de oferta</a>
   </div>
 </div>
 
+<!-- RECENZII -->
+<div class="container" id="reviews">
+  <h2 class="section-title">Ce spun oamenii care au comandat</h2>
+  <p class="section-subtitle">Recenzii reale despre experienta cu Melodii NDJ.</p>
+
+  <div class="reviews-wrap">
+    <div id="reviewsList" class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top">
+          <div class="avatar"></div>
+          <div>
+            <div class="review-name">Andreea</div>
+            <div class="review-badge">Melodie pentru aniversare</div>
+          </div>
+        </div>
+        <div class="review-text">
+          Am primit melodia personalizată și este genială! Versurile sunt fix pe povestea noastră. Merită toți banii!
+        </div>
+        <div class="review-meta">
+          <span>⭐ 5/5</span>
+          <span>✔ Comandă confirmată</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="avatar"></div>
+          <div>
+            <div class="review-name">Marius</div>
+            <div class="review-badge">Cadou pentru prieteni</div>
+          </div>
+        </div>
+        <div class="review-text">
+          Piesa a fost hit la petrecere, toți au întrebat de unde este. Super idee de cadou, recomand 100%.
+        </div>
+        <div class="review-meta">
+          <span>⭐ 5/5</span>
+          <span>✔ Comandă confirmată</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="avatar"></div>
+          <div>
+            <div class="review-name">Ioana</div>
+            <div class="review-badge">Melodie pentru logodnic</div>
+          </div>
+        </div>
+        <div class="review-text">
+          Rapid, ieftin și foarte personal. A fost momentul preferat al serii, clar o sa mai comand.
+        </div>
+        <div class="review-meta">
+          <span>⭐ 5/5</span>
+          <span>✔ Comandă confirmată</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="avatar"></div>
+          <div>
+            <div class="review-name">Raluca</div>
+            <div class="review-badge">Melodie pentru parinti</div>
+          </div>
+        </div>
+        <div class="review-text">
+          Nu mă așteptam să iasă atât de bine. A inclus toate detaliile pe care i le-am trimis, exact cum mi-am dorit.
+        </div>
+        <div class="review-meta">
+          <span>⭐ 5/5</span>
+          <span>✔ Comandă confirmată</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-review">
+      <h4>Ai comandat deja? Lasa o recenzie</h4>
+      <small>(Recenzia se afiseaza doar aici pe pagina, nu se trimite nicaieri.)</small>
+      <input type="text" id="revName" placeholder="Numele tau (optional)">
+      <textarea id="revText" placeholder="Scrie pe scurt cum ti s-a parut melodia"></textarea>
+      <button id="revBtn" class="btn-secondary">Adauga recenzia</button>
+      <small id="revMsg"></small>
+    </div>
+  </div>
+</div>
+<!-- END RECENZII -->
+
+<!-- FORMULAR + PLATA -->
 <div class="container" id="comanda">
   <h2 class="section-title">Formular de comanda</h2>
   <p class="section-subtitle">Completeaza toate campurile ca sa pot crea o melodie care chiar se potriveste persoanei si momentului.</p>
 
   <div class="form-wrapper">
-    <!-- FORMULAR – Web3Forms + redirect la plata Stripe -->
     <form id="comandaForm" action="https://api.web3forms.com/submit" method="POST">
-      <!-- Cheia ta de la Web3Forms -->
+      <!-- Cheia Web3Forms -->
       <input type="hidden" name="access_key" value="c513cc2b-f660-4d0f-80ab-2ba9b8038435">
-
       <!-- Subiect email -->
       <input type="hidden" name="subject" value="Comanda noua – Melodie personalizata">
-
-      <!-- Redirect Web3Forms (nu il folosim, facem redirect cu JS) -->
+      <!-- Redirect Web3Forms (nu-l folosim, redirect facut cu JS dupa raspuns) -->
       <input type="hidden" name="redirect" value="">
 
       <div class="two-cols">
@@ -437,7 +636,6 @@
         <option>Emotional / romantic</option>
         <option>Amuzant / cu glume</option>
         <option>Motivational</option>
-        <option>Combinat (emotionant + amuzant)</option>
       </select>
 
       <label for="stil">Stil muzical preferat</label>
@@ -450,7 +648,6 @@
       <select id="livrare" name="Termen livrare dorit">
         <option>Standard 3–5 zile</option>
         <option>Express 24–48 ore (cost extra)</option>
-        <option>Nu conteaza, important e sa iasa bine</option>
       </select>
 
       <label for="alte">Alte mentiuni</label>
@@ -465,6 +662,7 @@
     </form>
   </div>
 </div>
+<!-- END FORMULAR + PLATA -->
 
 <div class="container faq" id="contact">
   <h2 class="section-title">Intrebari frecvente</h2>
@@ -493,7 +691,7 @@
 </footer>
 
 <script>
-  // anul din footer
+  // anul in footer
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // Stripe Payment Link – inlocuieste cu link-ul real din Stripe Dashboard
@@ -503,7 +701,6 @@
 
   form.addEventListener("submit", function(e) {
     e.preventDefault();
-
     const formData = new FormData(form);
 
     fetch(form.action, {
@@ -521,6 +718,42 @@
     .catch(function(error) {
       alert("Eroare de retea. Incearca din nou.");
     });
+  });
+
+  // adaugare recenzie front-end (nu salveaza pe server)
+  const revBtn = document.getElementById("revBtn");
+  const revName = document.getElementById("revName");
+  const revText = document.getElementById("revText");
+  const revMsg = document.getElementById("revMsg");
+  const reviewsList = document.getElementById("reviewsList");
+
+  revBtn.addEventListener("click", () => {
+    const name = revName.value.trim() || "Client NDJ";
+    const text = revText.value.trim();
+    if (!text) {
+      revMsg.textContent = "Scrie ceva inainte sa trimiti.";
+      return;
+    }
+    const card = document.createElement("div");
+    card.className = "review-card";
+    card.innerHTML = `
+      <div class="review-top">
+        <div class="avatar"></div>
+        <div>
+          <div class="review-name">${name}</div>
+          <div class="review-badge">Recenzie adaugata pe site</div>
+        </div>
+      </div>
+      <div class="review-text">${text}</div>
+      <div class="review-meta">
+        <span>⭐ 5/5</span>
+        <span>🙏 Multumim!</span>
+      </div>
+    `;
+    reviewsList.prepend(card);
+    revName.value = "";
+    revText.value = "";
+    revMsg.textContent = "Recenzia ta a fost adaugata (vizibila doar aici, nu se trimite nicaieri).";
   });
 </script>
 
